@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculation of money</title>
+</head>
+<body>
+    <form name="calculation">
+        <h1>Calculation of money</h1>
+        <div class="formcontainer">
+        <hr/>
+        <div class="container">
+            <label for="amount"><strong>Amount</strong></label>
+            <input type="number" step="0.01" placeholder="Enter sum" name="amount" required>
+            <label for="price"><strong>Price</strong></label>
+            <input type="number" step="0.01" placeholder="Enter price" name="price" required>
+        </div>
+        <input type="submit" value="Calculate" name="submit">
+    </form>
+</body>
+</html>
+
+<script>
+    const form = document.forms.calculation;
+    
+    function insertAfter(newNode, referenceNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const amount = +document.forms.calculation.amount.value * 100;
+        const price = +document.forms.calculation.price.value * 100;
+        const money = (amount - price) / 100;
+
+        const h1 = document.createElement('h1');
+        h1.innerText = `Your vacation - ${money.toString().split('.')[0]} dollars ${money.toString().split('.')[1]} cents`;
+
+        insertAfter(h1, form)
+    })
+
+</script>
