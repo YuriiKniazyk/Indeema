@@ -24,6 +24,7 @@
 
 <script>
     const form = document.forms.calculation;
+    const h1 = document.createElement('h1');
     
     function insertAfter(newNode, referenceNode) {
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
@@ -36,7 +37,6 @@
         const price = +document.forms.calculation.price.value * 100;
         const money = (amount - price) / 100;
 
-        const h1 = document.createElement('h1');
         h1.innerText = `Your vacation - ${money.toString().split('.')[0]} dollars ${money.toString().split('.')[1]} cents`;
 
         insertAfter(h1, form)
