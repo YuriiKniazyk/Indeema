@@ -48,3 +48,7 @@ input[type=submit]:hover {
     padding: 16px 0;
     text-align: left;
 }
+
+.error {
+    background: red;
+}
