@@ -8,5 +8,106 @@
 </head>
 <body>
     
+<h2>HTML Table</h2>
+<button id="add">Add new data</button>
+<table id='table'>
+  <tr>
+    <th>Name</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Date</th>
+    <th></th>
+    <th></th>
+  </tr>
+</table>
+
+<div id="add_modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form name="add">
+            <h1>Add data</h1>
+            <div class="formcontainer">
+            <hr/>
+            <div class="container">
+                <label for="first_name"><strong>Firstname</strong></label>
+                <input type="text" placeholder="Enter firstname" name="firstname" required>
+                <label for="lastname"><strong>Lastname</strong></label>
+                <input type="text" placeholder="Enter lastname" name="lastname" required>
+        
+                <label for="email"><strong>Email</strong></label>
+                <input type="text" placeholder="Enter email" name="email" required>
+                <label for="date"><strong>Lastname</strong></label>
+                <input type="date" placeholder="Enter date" name="date" required>
+            </div>
+            <input type="submit" value="Create" name="submit">
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
+
+<script>
+    //modal open
+    const modal = document.getElementById("add_modal");
+    const btn = document.getElementById("add");
+    const span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    //form 
+    const form = document.forms.add;
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        const firstName = document.forms.add.firstname.value;
+        const lastName = document.forms.add.lastname.value;
+        const email = document.forms.add.email.value;
+        const date = document.forms.add.date.value;
+
+        insert_Row(firstName, lastName, email, date);
+        form.reset();
+        modal.style.display = "none";
+    });
+
+    function insert_Row(firstName, lastName, email, date){
+        const x=document.getElementById('table').insertRow(1);
+        const a = x.insertCell(0);
+        const b = x.insertCell(1);
+        const c = x.insertCell(2);
+        const d = x.insertCell(3);
+        const e = x.insertCell(4);
+        const f = x.insertCell(5);
+        
+        a.innerText = firstName;
+        b.innerText = lastName;
+        c.innerText = email;
+        d.innerText = date;
+
+        e.innerHTML = '<a href="#" id="edit">Edit</a>';
+        f.innerHTML = '<a href="#" onclick="deleteRow(this)">Delete</a>';
+    }
+
+    function deleteRow(r) {
+        console.log('r', r.parentNode.parentNode);
+        const i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("table").deleteRow(i);
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+
+        if (event.target == modalUpdate) {
+            modalUpdate.style.display = "none";
+        }
+    }
+</script>
