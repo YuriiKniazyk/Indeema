@@ -1,4 +1,5 @@
-Follow the command: https://github.com/YuriiKniazyk/Indeema.git
+Follow the command:
+    git clone https://github.com/YuriiKniazyk/Indeema.git
 
 Open pages in the browser at:
     -http://127.0.0.1:{your_port}/task1/index.html
